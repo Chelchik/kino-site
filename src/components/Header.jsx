@@ -35,6 +35,7 @@ function Header() {
         const historyUrl = `${main_url}/discover/movie?sort_by=popularity.desc&with_genres=36&${api_key}`;
         const history = await request(historyUrl);
 
+        if (inputValue.length >= 1) {  
         dispatch({
             type: "SUBMIT",
             payload: {
@@ -43,6 +44,7 @@ function Header() {
                 history: history,
             }
         })
+        }
     }
 
     const inputValueFunc = (e) => {
