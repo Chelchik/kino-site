@@ -9,7 +9,7 @@
 }
 
 .kinoinfo {
-    width: 500px;
+    width: 600px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -86,3 +86,70 @@
     gap: 5px;
     border: 5px;
 }
+
+@media screen and (max-width: 1850px) {
+    .slide-box {
+        width: 280px;
+    }
+  
+    .slide-img {
+        height: 350px;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .slide-box {
+        width: 200px;
+    }
+  
+    .slide {
+        align-items: center;
+        text-align: center;
+    }
+  
+    .slide-img {
+        height: 200px;
+    }
+  }
+
+@media screen and (max-width: 922px) {
+    #cont {
+        padding: 50px;
+    }
+  
+    .slide-img {
+        height: 250px;
+    }
+}  
+
+@media screen and (max-width: 895px) {
+  .slide-box {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 685px) {
+  .slide-box {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+    .kinoinfo {
+      width: 500px;
+    }
+}  
+
+@media screen and (max-width: 520px) {
+    .kinoinfo {
+      width: 350px;
+      padding: 30px;
+    }
+}  
+
+@media screen and (max-width: 375px) {
+    .kinoinfo {
+      width: 250px;
+      padding: 30px;
+    }
+}  
