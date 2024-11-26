@@ -1,4 +1,4 @@
-export function themeReducer(state, action) {
+export function themeReducer(state=themeInitialState, action) {
     if (action.type === "theme") {
         return {...state, theme: action.payload}
     }

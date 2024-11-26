@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { CgProfile } from "react-icons/cg";
 import { IoMdMenu } from "react-icons/io";
@@ -11,6 +11,7 @@ import ThemeContext from '../Context/context';
 import { FaSun } from "react-icons/fa";
 import { FaMoon } from "react-icons/fa";
 import { selectTheme } from '../features/ThemeSlice';
+import { selectShow } from '../features/menuSlice';
 
 function Header() {
     const {theme, setTheme} = useContext(ThemeContext);
@@ -23,6 +24,8 @@ function Header() {
     }
     
     const inputValue = useSelector(selectInput);
+    const isShow = useSelector(selectShow);
+
     const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
@@ -47,11 +50,35 @@ function Header() {
         }
     }
 
+    
     const inputValueFunc = (e) => {
         dispatch({
             type: "INPUT_VALUE",
             payload: e.target.value
         })
+    }
+
+    const menuFunc = () => {
+        dispatch({
+            type: "menu",
+            payload: isShowMenu
+        })
+        setIsShowMenu(!isShowMenu)
+    }
+
+    const [isShowMenu, setIsShowMenu] = useState(false);
+
+    const hiddenMenu = {
+        width: "100%",
+        position: "absolute",
+        top: "100px",
+        left: "0",
+        backgroundColor: "#272727",
+        padding: "35px",
+        display: isShowMenu ? "flex" : "none",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "15px",
     }
 
   return (
@@ -74,6 +101,13 @@ function Header() {
             <li className="menu-bar"><NavLink  to='trending' className="menu-link">Trending</NavLink></li>
             <li className="menu-bar"><NavLink  to='categories' className="menu-link">Categories</NavLink></li>
         </ul>
+
+        <ul style={hiddenMenu}>
+          <li className='menu-bar'><NavLink to='/' className='menu-link'>HOME</NavLink></li>
+          <li className='menu-bar'><NavLink to='about' className='menu-link'>ABOUT</NavLink></li>
+          <li className='menu-bar'><NavLink to='services' className='menu-link'>SERVICES</NavLink></li>
+          <li className='menu-bar'><NavLink to='contact' className='menu-link'>CONTACTS</NavLink></li>
+        </ul>
     </nav>
 
     <div className="searc-form-box">
@@ -87,7 +121,7 @@ function Header() {
     </div>
 
     <div className="burger-box">
-        <IoMdMenu className='menu-icon' />
+        <IoMdMenu className='menu-icon' onClick={menuFunc} />
     </div>
 </header>
   )
